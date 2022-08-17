@@ -1,0 +1,18 @@
+{% extends "library/base.html" %}
+{% block content %}
+<div>
+    {% if id is not None %}
+    <h2>画像が登録されました</h2>
+    <p>画像のIDは{{ id }}です</p>
+    {% endif %}
+</div>
+<div>
+    <h2>画像を登録する</h2>
+    <!--url名がuploadのパスで表示するように設定-->
+    <form action="{% url 'upload' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <p>{{ upload_form.as_p }}</p>
+        <p><input type="submit" value="アップロード"></p>
+    </form>
+</div>
+{% endblock %}
