@@ -1,0 +1,28 @@
+{% extends "library/base.html" %}
+{% load static %} <!-- 本来はbase.htmlのみ持っているもの？-->
+
+{% block content %}
+<div class="ui three column grid">
+    {% for book in book_list %}
+    <div class="column">
+        <div class="ui card">
+            <div class="content">
+                <h3 class="ui center aligned header">
+                    {{ book.title }}
+                </h3>
+            </div>
+            <a class="image" href="{% url 'library:book_detail' book.pk %}">
+                <img src="{{ book.cover.url }}">
+            </a>
+            <div class="content">
+                <div class="right floated meta">
+                    14時間
+                </div>
+                <img class="ui avatar image" src="{% static 'images/logo.png' %}">
+                John Doe
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

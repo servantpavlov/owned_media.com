@@ -1,16 +1,28 @@
 from django.shortcuts import render
 from .forms import UploadForm
-from .models import BookImage
+from .models import BookArticle
 from django.views import generic
 
-def top(request):
+def book_list(request):
     title = 'Owned_Media'
     name = 'pavlov'
-    ctx = {'title': title,
+    ctx = {
+        'title': title,
         'name': name,
-        'book_image_list': BookImage.objects.all(),
+        'book_list': BookArticle.objects.all(),
     }
-    return render(request, 'library/top.html', ctx)
+    return render(request, 'library/book_list.html', ctx)
+
+def book_detail(request, pk):
+    title = 'Owned_Media'
+    name = 'pavlov'
+    ctx ={
+        'title': title,
+        'name': name,
+        'book_detail': BookArticle.objects.get(pk=pk),
+    }
+    
+    return render(request, 'library/book_detail.html', ctx)
 
 def upload(request):
     ctx = {
